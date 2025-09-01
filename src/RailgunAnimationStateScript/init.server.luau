@@ -49,7 +49,7 @@ end
 
 
 --Add the animation script.
-local ClonedRailgunAnimationScript = script:WaitForChild("RailgunAnimationScript"):Clone()
+local ClonedRailgunAnimationScript = script:WaitForChild("RailgunAnimationScript"):Clone() :: Script
 ClonedRailgunAnimationScript.Disabled = false
 ClonedRailgunAnimationScript.Parent = ReplicatedStorage
 

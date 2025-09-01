@@ -9,14 +9,14 @@ local CollectionService = game:GetService("CollectionService")
 local HttpService = game:GetService("HttpService")
 local Debris = game:GetService("Debris")
 
-local Tool = script.Parent
-local Configuration = Tool:WaitForChild("Configuration")
-local FireWeapon = Tool:WaitForChild("FireWeapon")
-local LowerWeapon = Tool:WaitForChild("LowerWeapon")
-local Handle = Tool:WaitForChild("Handle")
-local RailEnd = Handle:WaitForChild("RailEnd")
-local FireSound = Handle:WaitForChild("FireSound")
-local ReloadSound = Handle:WaitForChild("ReloadSound")
+local Tool = script.Parent :: Tool
+local Configuration = Tool:WaitForChild("Configuration") :: Folder
+local FireWeapon = Tool:WaitForChild("FireWeapon") :: RemoteEvent
+local LowerWeapon = Tool:WaitForChild("LowerWeapon") :: RemoteEvent
+local Handle = Tool:WaitForChild("Handle") :: BasePart
+local RailEnd = Handle:WaitForChild("RailEnd") :: Attachment
+local FireSound = Handle:WaitForChild("FireSound") :: Sound
+local ReloadSound = Handle:WaitForChild("ReloadSound") :: Sound
 
 local ToolHeldDown = false
 
@@ -26,7 +26,7 @@ local ToolHeldDown = false
 Returns the value for a configurable item.
 --]]
 local function GetConfigurableItem(Name: string): any
-    return Configuration:WaitForChild(Name).Value
+    return (Configuration:WaitForChild(Name) :: any).Value
 end
 
 --[[
@@ -40,15 +40,15 @@ end
 
 --Set up the server animation script.
 if not ServerScriptService:FindFirstChild("RailgunAnimationStateScript") then
-    local NewScript = script.Parent:WaitForChild("RailgunAnimationStateScript"):Clone()
+    local NewScript = Tool:WaitForChild("RailgunAnimationStateScript"):Clone() :: Script
     NewScript.Disabled = false
-    script.Parent:WaitForChild("NexusAppendage"):Clone().Parent = NewScript:WaitForChild("RailgunAnimationScript")
+    Tool:WaitForChild("NexusAppendage"):Clone().Parent = NewScript:WaitForChild("RailgunAnimationScript")
     NewScript.Parent = ServerScriptService
 end
 
 --Get the events.
-local RailgunAnimationEvents = ReplicatedStorage:WaitForChild("RailgunAnimationEvents")
-local DisplayTrail = RailgunAnimationEvents:WaitForChild("DisplayTrail")
+local RailgunAnimationEvents = ReplicatedStorage:WaitForChild("RailgunAnimationEvents") :: Folder
+local DisplayTrail = RailgunAnimationEvents:WaitForChild("DisplayTrail") :: RemoteEvent
 
 
 
@@ -78,7 +78,7 @@ FireWeapon.OnServerEvent:Connect(function(Player: Player, Direction: Vector3, Hi
                 if RailOverrides then
                     for _, Value in RailOverrides:GetChildren() do
                         if Value:IsA("ValueBase") then
-                            (Rail :: any)[Value.Name] = Value.Value
+                            (Rail :: any)[Value.Name] = (Value :: any).Value
                         end
                     end
                 end
@@ -95,7 +95,7 @@ FireWeapon.OnServerEvent:Connect(function(Player: Player, Direction: Vector3, Hi
             local OnHitCallback = OnHitModule and require(OnHitModule) :: (Tool, BasePart, BasePart?, Humanoid?) -> ()
             if HitPart and HitPart.Parent then
                 --Damage the hit character.
-                local HitCharacter = HitPart.Parent
+                local HitCharacter = HitPart.Parent :: Model
                 local HitHumanoid = HitCharacter:FindFirstChildOfClass("Humanoid")
                 local HitPlayer = Players:GetPlayerFromCharacter(HitCharacter)
                 if HitHumanoid and HitHumanoid.Health > 0 and (not HitPlayer or GetConfigurableItem("AllowTeamKill") or Player.Neutral or HitPlayer.Neutral or Player.TeamColor ~= HitPlayer.TeamColor) then
@@ -198,9 +198,9 @@ LowerWeapon.OnServerEvent:Connect(function(Player: Player)
 end)
 
 --Connect tool equiping.
-local EquippedPlayer
+local EquippedPlayer: Player? = nil
 Tool.Equipped:Connect(function()
-    local Character = Tool.Parent
+    local Character = Tool.Parent :: Model
     if Character then
         local Player = Players:GetPlayerFromCharacter(Character)
         if Player then

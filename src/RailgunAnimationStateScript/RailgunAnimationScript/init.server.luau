@@ -10,8 +10,8 @@ local TweenService = game:GetService("TweenService")
 local VRService = game:GetService("VRService")
 
 local RemotesContainer = ReplicatedStorage:WaitForChild("RailgunAnimationEvents")
-local RailgunNoAnimationPlayersValue = RemotesContainer:WaitForChild("RailgunNoAnimationPlayers")
-local VRPlayerJoinedEvent = RemotesContainer:WaitForChild("VRPlayerJoined")
+local RailgunNoAnimationPlayersValue = RemotesContainer:WaitForChild("RailgunNoAnimationPlayers") :: StringValue
+local VRPlayerJoinedEvent = RemotesContainer:WaitForChild("VRPlayerJoined") :: RemoteEvent
 local R6Animator = require(script:WaitForChild("R6Animator"))
 local R15Animator = require(script:WaitForChild("R15Animator"))
 local RailgunNoAnimationPlayers = HttpService:JSONDecode(RailgunNoAnimationPlayersValue.Value)
@@ -126,7 +126,7 @@ Returns the player for a railgun, if one exists.
 local function GetPlayerForRailgun(Railgun: Instance): Player?
     local Character = Railgun.Parent
     if not Character then return nil end
-    return Players:GetPlayerFromCharacter(Character)
+    return Players:GetPlayerFromCharacter(Character :: Model)
 end
 
 --[[
@@ -144,7 +144,7 @@ local function UpdateRailgun(Railgun: Tool): ()
 
     --Return if the animation hasn't changed.
     local NewAnimationName, NewAnimationTime = "", 0
-    local NewAnimationData = Railgun:GetAttribute("LastRailgunAnimation")
+    local NewAnimationData = Railgun:GetAttribute("LastRailgunAnimation") :: string
     if NewAnimationData then
         local NewAnimation = HttpService:JSONDecode(NewAnimationData)
         NewAnimationName = NewAnimation.Name
@@ -191,7 +191,7 @@ end
 
 
 --Connect displaying trails.
-RemotesContainer:WaitForChild("DisplayTrail").OnClientEvent:Connect(function(StartAttachment: Attachment?, BackupStartPosition: Vector3, EndPosition: Vector3, TrailProperties: {[string]: any})
+(RemotesContainer:WaitForChild("DisplayTrail") :: RemoteEvent).OnClientEvent:Connect(function(StartAttachment: Attachment?, BackupStartPosition: Vector3, EndPosition: Vector3, TrailProperties: {[string]: any})
     local StartPosition = StartAttachment and StartAttachment.WorldPosition or BackupStartPosition --StartAttachment may not be provided if not streamed in yet.
     local Distance = (EndPosition - StartPosition).Magnitude
 
@@ -231,12 +231,15 @@ end)
 
 --Connect the animated railguns.
 for _, RailgunTool in CollectionService:GetTagged("AnimatedRailgun") do
+    if not RailgunTool:IsA("Tool") then return end
     task.spawn(ConnectRailgun, RailgunTool)
 end
 CollectionService:GetInstanceAddedSignal("AnimatedRailgun"):Connect(function(RailgunTool)
+    if not RailgunTool:IsA("Tool") then return end
     ConnectRailgun(RailgunTool)
 end)
 CollectionService:GetInstanceRemovedSignal("AnimatedRailgun"):Connect(function(RailgunTool)
+    if not RailgunTool:IsA("Tool") then return end
     if not CurrentRailguns[RailgunTool] then return end
     GetPlayerForRailgun(RailgunTool)
     for _, Event in CurrentRailguns[RailgunTool].Events do

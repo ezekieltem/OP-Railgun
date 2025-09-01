@@ -10,18 +10,18 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local HttpService = game:GetService("HttpService")
 local UserInputService = game:GetService("UserInputService")
 
-local RemotesContainer = ReplicatedStorage:WaitForChild("RailgunAnimationEvents")
-local RailgunNoAnimationPlayersValue = RemotesContainer:WaitForChild("RailgunNoAnimationPlayers")
+local RemotesContainer = ReplicatedStorage:WaitForChild("RailgunAnimationEvents") :: Folder
+local RailgunNoAnimationPlayersValue = RemotesContainer:WaitForChild("RailgunNoAnimationPlayers") :: StringValue
 
-local Tool = script.Parent
-local Handle = Tool:WaitForChild("Handle")
-local RailEnd = Handle:WaitForChild("RailEnd")
-local FireWeapon = Tool:WaitForChild("FireWeapon")
-local LowerWeapon = Tool:WaitForChild("LowerWeapon")
-local Configuration = Tool:WaitForChild("Configuration")
-local FireBackAtPlayerWhenThroughWallValue = Configuration:WaitForChild("FireBackAtPlayerWhenThroughWall")
-local FullAutomaticValue = Configuration:WaitForChild("FullAutomatic")
-local ReloadTimeValue = Configuration:WaitForChild("ReloadTime")
+local Tool = script.Parent :: Tool
+local Handle = Tool:WaitForChild("Handle") :: BasePart
+local RailEnd = Handle:WaitForChild("RailEnd") :: Attachment
+local FireWeapon = Tool:WaitForChild("FireWeapon") :: RemoteEvent
+local LowerWeapon = Tool:WaitForChild("LowerWeapon") :: RemoteEvent
+local Configuration = Tool:WaitForChild("Configuration") :: Folder
+local FireBackAtPlayerWhenThroughWallValue = Configuration:WaitForChild("FireBackAtPlayerWhenThroughWall") :: BoolValue
+local FullAutomaticValue = Configuration:WaitForChild("FullAutomatic") :: BoolValue
+local ReloadTimeValue = Configuration:WaitForChild("ReloadTime") :: NumberValue
 local RailgunNoAnimationPlayers = HttpService:JSONDecode(RailgunNoAnimationPlayersValue.Value)
 
 local DB = true
@@ -39,7 +39,8 @@ local function ValidPartHit(Part: BasePart): boolean
     --Return if the part is invalid.
     if Part and Part.Parent and not Part.Parent:FindFirstChildOfClass("Humanoid") then
         local PartName = string.lower(Part.Name)
-        if Part:IsDescendantOf(Tool.Parent) or Part.Transparency > 0.8 or not Part.CanCollide or PartName == "handle" or PartName == "effect" or PartName == "bullet" or PartName == "laser" or PartName == "water" or PartName == "rail" then
+        local Character = Tool.Parent
+        if Character and Part:IsDescendantOf(Character) or Part.Transparency > 0.8 or not Part.CanCollide or PartName == "handle" or PartName == "effect" or PartName == "bullet" or PartName == "laser" or PartName == "water" or PartName == "rail" then
             return false
         end
     end
@@ -58,7 +59,7 @@ local function RayCast(StartPosition: Vector3, Direction: Vector3, MaxLength: nu
 	local RaycastResult = nil
 	local RaycastParameters = RaycastParams.new()
 	RaycastParameters.FilterType = Enum.RaycastFilterType.Exclude
-	RaycastParameters.FilterDescendantsInstances = {Tool.Parent}
+	RaycastParameters.FilterDescendantsInstances = {Tool.Parent :: Instance}
 	RaycastParameters.IgnoreWater = true
 	repeat
 		--Perform the raycast.
@@ -114,7 +115,7 @@ local function OnEquip(Mouse: Mouse): ()
                     local Camera = Workspace.CurrentCamera
                     local MouseRay = Camera:ScreenPointToRay(Mouse.X, Mouse.Y, 10000)
                     local RawEndPosition = MouseRay.Origin + MouseRay.Direction
-                    local _, NewEndPosition = RayCast(Camera.CFrame.p, (RawEndPosition - Camera.CFrame.p).Unit, 10000)
+                    local _, NewEndPosition = RayCast(Camera.CFrame.Position, (RawEndPosition - Camera.CFrame.Position).Unit, 10000)
                     EndPosition = NewEndPosition
                 end
                 local StartPosition = RailEnd.WorldPosition
