@@ -26,8 +26,14 @@ return function(Player: Player)
     local LeftUpperArm = Character:FindFirstChild("LeftUpperArm") :: BasePart
     local LeftHand = Character:FindFirstChild("LeftHand") :: BasePart
 
+    --Return if the right shoulder is missing.
+    --This prevents yielding in Appendage.FromPreset.
+    if not RightUpperArm:FindFirstChild("RightShoulder") then
+        return
+    end
+
     --Create the appendages.
-    local LeftArm = LeftUpperArm and LeftHand and Appendage.FromPreset("LeftArm", Character, true)
+    local LeftArm = LeftUpperArm and LeftHand and LeftUpperArm:FindFirstChild("LeftShoulder") and Appendage.FromPreset("LeftArm", Character, true)
     local RightArm = Appendage.FromPreset("RightArm", Character, true)
 
     --Create the psuedo-object.

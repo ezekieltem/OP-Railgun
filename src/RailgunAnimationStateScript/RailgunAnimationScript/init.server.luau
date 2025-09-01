@@ -102,6 +102,7 @@ local function EquipPlayer(Player: Player, InitialAnimation: string?): ()
     --Create the animator.
     local AnimationController = (Humanoid.RigType == Enum.HumanoidRigType.R6 and R6Animator(Player) or R15Animator(Player)) :: any
     PlayerAnimators[Player] = AnimationController
+    if not AnimationController then return end
 
     --Play the initial animation.
     if InitialAnimation then
