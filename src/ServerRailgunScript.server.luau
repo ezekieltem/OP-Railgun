@@ -42,7 +42,7 @@ end
 if not ServerScriptService:FindFirstChild("RailgunAnimationStateScript") then
     local NewScript = Tool:WaitForChild("RailgunAnimationStateScript"):Clone() :: Script
     NewScript.Disabled = false
-    Tool:WaitForChild("NexusAppendage"):Clone().Parent = NewScript:WaitForChild("RailgunAnimationScript")
+    Tool:WaitForChild("Packages"):Clone().Parent = NewScript:WaitForChild("RailgunAnimationScript")
     NewScript.Parent = ServerScriptService
 end
 

@@ -3,7 +3,7 @@
 
 local LEFT_HAND_GRIP_CORRECTION = CFrame.new(0.6, 0, 0) * CFrame.Angles(math.rad(-90), 0, 0)
 
-local Appendage = require(script.Parent:WaitForChild("NexusAppendage"):WaitForChild("Appendage")) :: any
+local Appendage = (require(script.Parent:WaitForChild("Packages"):WaitForChild("NexusAppendage")) :: any).Appendage
 
 
 

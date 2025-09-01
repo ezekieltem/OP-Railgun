@@ -2,8 +2,8 @@
     "name": "Railgun",
     "tree": {
         "$path": "src",
-        "NexusAppendage": {
-            "$path": "module/Nexus-Appendage"
+        "Packages": {
+            "$path": "./Packages"
         }
     }
 }
