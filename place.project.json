@@ -2,8 +2,12 @@
     "name": "Innovation-Railgun",
     "tree": {
         "$className": "DataModel",
-        "StarterPack": {
-            "$className": "StarterPack",
+        "ServerScriptService": {
+            "$className": "ServerScriptService",
+            "$path": "./demo/ServerScriptService/"
+        },
+        "ServerStorage": {
+            "$className": "ServerStorage",
             "Railgun": {
                 "$path": "."
             }

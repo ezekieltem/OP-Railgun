@@ -4,13 +4,13 @@ repository = "https://github.com/Innovation-Inc-Roblox/Railgun"
 description = "Railgun weapon used by Innovation Inc and Innovation Security."
 license = "MIT"
 authors = ["TheNexusAvenger"]
-version = "1.0.0"
+version = "1.5.0"
 
 registry = "https://github.com/UpliftGames/wally-index"
 realm = "shared"
 
 exclude = ["**"]
-include = ["src", "src/*", "default.project.json", "wally.lock", "wally.toml"]
+include = ["src", "src/*", "Distribution.luau", "default.project.json", "wally.lock", "wally.toml"]
 
 [dependencies]
 NexusAppendage = "thenexusavenger/nexus-appendage@1.2.0"

@@ -1,9 +1,12 @@
 {
     "name": "Railgun",
     "tree": {
-        "$path": "src",
-        "Packages": {
-            "$path": "./Packages"
+        "$path": "./Distribution.luau",
+        "Railgun": {
+            "$path": "src",
+            "Packages": {
+                "$path": "./Packages"
+            }
         }
     }
 }
