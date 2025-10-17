@@ -4,13 +4,11 @@
         "$className": "DataModel",
         "ServerScriptService": {
             "$className": "ServerScriptService",
-            "$path": "./demo/ServerScriptService/"
+            "$path": "./src/ServerScriptService"
         },
         "ServerStorage": {
             "$className": "ServerStorage",
-            "Railgun": {
-                "$path": "."
-            }
+            "$path": "./src/ServerStorage"
         }
     }
 }
