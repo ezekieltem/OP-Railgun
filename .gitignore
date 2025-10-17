@@ -19,3 +19,7 @@ sourcemap.json
 # OS styling
 desktop.ini
 .DS_Store
+
+# Whitelist needed roblox files
+!Handle.rbxmx
+!Original Op Railgun.rbxmx
