@@ -4,11 +4,36 @@
         "$className": "DataModel",
         "ServerScriptService": {
             "$className": "ServerScriptService",
-            "$path": "./src/ServerScriptService"
+            "NexusAdminLoader": {
+                "$path": "./src/NexusAdminLoader.server.luau"
+            }
         },
         "ServerStorage": {
             "$className": "ServerStorage",
-            "$path": "./src/ServerStorage"
+            "IS Railgun": {
+                "$path": "./Packages/_Index/innovation-inc-roblox_railgun@1.5.1/railgun/src",
+                "Packages": {
+                    "$path": "./Packages/_Index/innovation-inc-roblox_railgun@1.5.1/railgun/Packages"
+                }
+            },
+            "Original OP Railgun": {
+                "$path": "./src/Original OP Railgun.rbxmx"
+            },
+            "IS OP Railgun": {
+                "$path": "./src/IS OP Railgun",
+                "Packages": {
+                    "$className": "Folder",
+                    "NexusAppendage": {
+                        "$path": "./Packages/NexusAppendage.lua"
+                    },
+                    "_Index": {
+                        "$className": "Folder",
+                        "thenexusavenger_nexus-appendage@1.2.0": {
+                            "$path": "./Packages/_Index/thenexusavenger_nexus-appendage@1.2.0"
+                        }
+                    }
+                }
+            }
         }
     }
 }
