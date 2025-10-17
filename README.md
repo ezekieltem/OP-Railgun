@@ -1,5 +1,7 @@
 # This Fork
-This fork is simply meant to be a port of [TheNexusAvenger's Overpowered Railgun](https://www.roblox.com/games/240720375/My-Overpowered-Railgun), into the [Innovation Security Railgun](https://www.roblox.com/library/7042600131/Innovation-Security-Railgun).
+This is simply meant to be a port of [TheNexusAvenger's Overpowered Railgun](https://www.roblox.com/games/240720375/My-Overpowered-Railgun), into the [Innovation Security Railgun](https://www.roblox.com/library/7042600131/Innovation-Security-Railgun).
+
+This is detached from the [original repository](https://github.com/Innovation-Inc-Roblox/Railgun) for purposes of restructuring, but will be kept up-to-date as much as possible with the original repository.
 
 This is currently a work in progress.
 
