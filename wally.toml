@@ -15,3 +15,5 @@ include = ["src", "src/*", "Distribution.luau", "Packages", "Packages/*", "defau
 [dependencies]
 NexusAppendage = "thenexusavenger/nexus-appendage@1.2.0"
 railgun = "innovation-inc-roblox/railgun@1.5.1"
+nexus-admin = "thenexusavenger/nexus-admin@2.10.3"
+nexus-button = "thenexusavenger/nexus-button@2.5.2"
