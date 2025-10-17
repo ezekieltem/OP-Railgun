@@ -1,9 +1,9 @@
 [package]
-name = "innovation-inc-roblox/railgun"
-repository = "https://github.com/Innovation-Inc-Roblox/Railgun"
-description = "Railgun weapon used by Innovation Inc and Innovation Security."
+name = "ezekieltem/op-railgun"
+repository = "https://github.com/ezekieltem/OP-Railgun"
+description = "A fork of the Railgun weapon used by Innovation Inc and Innovation Security. "
 license = "MIT"
-authors = ["TheNexusAvenger"]
+authors = ["TheNexusAvenger","ezekieltem"]
 version = "1.5.1"
 
 registry = "https://github.com/UpliftGames/wally-index"
