@@ -1,11 +1,15 @@
 {
-    "name": "Railgun",
+    "name": "Innovation-Railgun",
     "tree": {
-        "$path": "./Distribution.luau",
-        "Railgun": {
-            "$path": "src",
-            "Packages": {
-                "$path": "./Packages"
+        "$className": "DataModel",
+        "ServerScriptService": {
+            "$className": "ServerScriptService",
+            "$path": "./demo/ServerScriptService/"
+        },
+        "ServerStorage": {
+            "$className": "ServerStorage",
+            "Railgun": {
+                "$path": "."
             }
         }
     }
